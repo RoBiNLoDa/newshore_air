@@ -1,0 +1,138 @@
+<div class="secction_buscar">
+  <h1>¿A donde quieres viajar?</h1>
+
+  <form class="formulario " [formGroup]="formularioBusqueda" (ngSubmit)="onSubmit()">
+    <div class="element_form">
+      <div class="origen">
+        <p class="origen_p">Desde:
+          <input type="text" formControlName="origen" oninput="this.value = this.value.toUpperCase()"
+            placeholder="Origen">
+          <span *ngIf="this.formularioBusqueda.get('origen')?.errors?.['required']">
+            *Seleccione un origen.
+          </span>
+          <span *ngIf="this.formularioBusqueda.get('origen')?.errors?.['pattern']">
+            *No encontramos nada, intenta de nuevo.
+          </span>
+          <span *ngIf="areEqual()">
+            *Modifica tu búsqueda, campos iguales.
+          </span>
+        </p>
+        <p class="result" *ngIf="findPlace(this.formularioBusqueda.value.origen!, 'o'); else originNoFind">
+          {{place_origin.code}}, {{place_origin.city}}, {{place_origin.country}}
+        </p>
+        <ng-template #originNoFind>
+          <span
+            *ngIf="this.formularioBusqueda.value.origen != '' && !this.formularioBusqueda.get('origen')?.errors?.['pattern']">
+            *Origen no encontrado.
+          </span>
+        </ng-template>
+      </div>
+      <div class="destino">
+        <p class="destino_p">Hacia:
+          <input type="text" formControlName="destino" oninput="this.value = this.value.toUpperCase()"
+            placeholder="Destino">
+          <span *ngIf="this.formularioBusqueda.get('destino')?.errors?.['required']">
+            *Seleccione un destino.
+          </span>
+          <span *ngIf="this.formularioBusqueda.get('destino')?.errors?.['pattern']">
+            **No encontramos nada, intenta de nuevo.
+          </span>
+          <span *ngIf="areEqual()">
+            *Modifica tu búsqueda, campos iguales.
+          </span>
+        </p>
+        <p class="result" *ngIf="findPlace(this.formularioBusqueda.value.destino!, 'd'); else destinationNoFind">
+          {{place_destination.code}}, {{place_destination.city}}, {{place_destination.country}}
+        </p>
+        <ng-template #destinationNoFind>
+          <span
+            *ngIf="this.formularioBusqueda.value.destino != '' && !this.formularioBusqueda.get('destino')?.errors?.['pattern']">
+            *Destino no encontrado.
+          </span>
+        </ng-template>
+
+      </div>
+      <div class="button_form">
+        <button type="submit" [disabled]="!this.formularioBusqueda.valid">Buscar</button>
+      </div>
+    </div>
+  </form>
+  <diV>
+    <app-vuelos [journeys]="journeys"></app-vuelos>
+  </diV>
+  <h2>Conoce nuestros destinos.</h2>
+  <div class="imagenes">
+    <div class="img">
+      <figure>
+        <img src="../../../assets/img/Barcelona.jpg" alt="Barcelona">
+      </figure>
+      <div class="img_text">
+        <p>BCN, Barcelona, España.</p>
+      </div>
+    </div>
+    <div class="img">
+      <figure>
+        <img src="../../../assets/img/Bogota.jpg" alt="Bogotá">
+      </figure>
+      <div class="img_text">
+        <p>BOG, Bogotá, Colombia.</p>
+      </div>
+    </div>
+    <div class="img">
+      <figure>
+        <img src="../../../assets/img/Canton.jpg" alt="Canton">
+      </figure>
+      <div class="img_text">
+        <p>CAN, Canton, China.</p>
+      </div>
+    </div>
+    <div class="img">
+      <figure>
+        <img src="../../../assets/img/Cartagena.jpg" alt="Cartagena">
+      </figure>
+      <div class="img_text">
+        <p>CTG, Cartagena, Colombia.</p>
+      </div>
+    </div>
+    <div class="img">
+      <figure>
+        <img src="../../../assets/img/Madrid.jpg" alt="Madrid">
+      </figure>
+      <div class="img_text">
+        <p>MAD, Madrid, España.</p>
+      </div>
+    </div>
+    <div class="img">
+      <figure>
+        <img src="../../../assets/img/Manizales.jpg" alt="Manizales">
+      </figure>
+      <div class="img_text">
+        <p>MZL, Manizales, Colombia.</p>
+      </div>
+    </div>
+    <div class="img">
+      <figure>
+        <img src="../../../assets/img/Medellin.jpg" alt="Medellin">
+      </figure>
+      <div class="img_text">
+        <p>MDE, Medellin, Colombia.</p>
+      </div>
+    </div>
+    <div class="img">
+      <figure>
+        <img src="../../../assets/img/Mexico.jpg" alt="México">
+      </figure>
+      <div class="img_text">
+        <p>MEX, Ciudad de México, México.</p>
+      </div>
+    </div>
+    <div class="img">
+      <figure>
+        <img src="../../../assets/img/Pereira.jpg" alt="Pereira">
+      </figure>
+      <div class="img_text">
+        <p>PEI, Pereira, Colombia.</p>
+      </div>
+    </div>
+  </div>
+</div>

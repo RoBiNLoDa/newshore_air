@@ -1,0 +1,32 @@
+<div class="dialog">
+    <div class="dialog_title">
+        <h1 class="title">Detalles del vuelo</h1>
+        <a (click)="close()"><mat-icon>close</mat-icon></a>
+    </div>
+    <div *ngIf="journey">
+        <div class="dialog_content" *ngIf=" journey.flights else notJourney">
+            <div class="dialog_journey">
+                <p>{{journey.origin | city}} a {{journey.destination | city}}</p>
+            </div>
+            <div class="dialog_detail">
+                <div *ngFor="let flight of journey.flights">
+                    <p><span>Origen: </span>{{flight.origin | city }}</p>
+                    <p><span>Destino: </span>{{flight.destination | city}} </p>
+                    <p><span>Vuelo número: </span>{{flight.transport.flightNumber}}</p>
+                    <p><span>Precio: </span>{{flight.price | coin:coin.coin | currency:
+                        coin.coin:'symbol-narrow':'.0-0'}} {{coin.coin}}</p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <ng-template #notJourney>
+            <div class="dialog_message">
+                <p>!Ups¡ Lo sentimos, no encontramos vuelos disponibles para la ruta que buscaste.</p>
+            </div>
+        </ng-template>
+    </div>
+    <div mat-dialog-actions>
+        <div class="dialog_separator"></div>
+        <button class="dialog_button" (click)="close()">Cerrar</button>
+    </div>
+</div>

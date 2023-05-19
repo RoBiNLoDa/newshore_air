@@ -1,0 +1,43 @@
+
+<nav class="nav">
+
+    <div class="nav_img">
+        <a id="nav_logo" [routerLink]="['/inicio']" routerLinkActive="router-link-active" ><img src="../assets/img/Logo.png"></a>
+    </div>
+    <div class="nav_links">
+        <label class="select_label">Moneda: </label>
+        <form class="select_form" [formGroup]="form">
+            <select class="select" formControlName="coin_" (ngModelChange)="onChange($event)">
+                <option *ngFor="let coin of coins" [ngValue]="coin">
+                    {{ coin.coin }}
+                </option>
+            </select>
+        </form>
+    </div>
+
+</nav>
+<section class="section">
+    <app-inicio></app-inicio>
+</section>
+<footer>
+    <div id="footer">
+     <div class="footer_datos">
+        <p>
+            Robinson Loaiza Dávila
+        </p>
+        <p>
+            Ingeniero de Sistemas
+        </p>
+     </div>
+     <div class="footer_datos">
+        <p>
+            <span class='material-icons phone'>phone_iphone</span> 318 383 6826
+        </p>
+        <p>
+            <span class='material-icons email'>email</span> robinsonloaiza@gmail.com
+        </p>
+     </div>
+    </div>
+</footer>
+
+

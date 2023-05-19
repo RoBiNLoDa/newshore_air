@@ -1,0 +1,16 @@
+<diV class="journeys" *ngIf=" journeys && journeys.length>0">
+    <div class="journey" *ngFor="let journey of journeys">
+
+        <div class="journey_origin">{{journey.origin}}</div>
+        <div class="separator_hor"></div>
+        <div class="icon">
+            <a (click)="openDialog(journey)">Detalles del vuelo</a>
+            <mat-icon style="color: gray;">flight_takeoff</mat-icon>
+        </div>
+        <div class="separator_hor"></div>
+        <div class="journey_destination">{{journey.destination}}</div>
+        <div class="separator_ver"></div>
+        <div class="price">{{journey.price | coin:coin.coin | currency: coin.coin:'symbol-narrow':'.0-0'}} {{coin.coin}}
+        </div>
+    </div>
+</diV>
